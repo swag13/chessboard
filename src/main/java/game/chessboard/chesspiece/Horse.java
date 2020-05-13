@@ -1,37 +1,99 @@
 package game.chessboard.chesspiece;
 
+import game.chessboard.ChessBoard;
 import game.chessboard.ChessPiece;
+import game.chessboard.DirectionProvider;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Horse implements ChessPiece{
 
-	String position;
-	
+	String startPosition ;
+	List<String> movement = new ArrayList<String>();
+
 	public Horse() {
-	
-	}
 
-	public Horse(String position) {
-		this.position = position;
 	}
+	public Horse(String startPosition) {
+		this.startPosition = startPosition; //D5
 
-	@Override
-	public String getType() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
 	public List<String> move() {
-		// TODO Auto-generated method stub
-		return null;
+		List<String> dir = getDirection();
+		int x = 0, y = 0;
+		for (String s : dir) {
+			
+			switch (s) {
+			case "UP":
+				y = 2;
+				x = 1;
+				resolveMovement(x, y, startPosition);
+				y = 2;
+				x = -1;
+				resolveMovement(x, y, startPosition);
+				continue;
+			case "DOWN":
+				y = -2;
+				x = -1;
+				resolveMovement(x, y, startPosition);
+				y = -2;
+				x = 1;
+				resolveMovement(x, y, startPosition);
+				continue;
+			case "LEFT":
+				x = -2;
+				y = -1;				
+				resolveMovement(x, y, startPosition);
+				x = -2;
+				y = 1;				
+				resolveMovement(x, y, startPosition);
+				continue;
+			case "RIGHT":
+				x = 2;
+				y = 1;
+				resolveMovement(x, y, startPosition);
+				x = 2;
+				y = -1;
+				resolveMovement(x, y, startPosition);
+				continue;
+			default:
+				continue;
+			}
+		}
+		return this.movement;
 	}
+
+
+	public void resolveMovement(int i, int j, String startPosition) {
+		int xPos = 0;
+		int yPos = 0;
+		String[][] board = ChessBoard.chessBoard;
+		for (int y=7; y>=0;y--) {
+			for (int x=0; x<8; x++) {
+				if (board[x][y].equals(startPosition)){
+					xPos = x;
+					yPos= y;
+				}
+			}
+		}
+		if(yPos + j<=7 && yPos + j>=0 && xPos + i>=0 && xPos + i<=7) {
+			this.movement.add(board[xPos + i][yPos + j]);
+		}
+	}
+
 
 	@Override
 	public List<String> getDirection() {
-		// TODO Auto-generated method stub
-		return null;
+		List<String> dir = new DirectionProvider().getDirection(this);
+		return dir;
+	}
+
+	@Override
+	public String getType() {
+		return "Horse";
 	}
 
 }

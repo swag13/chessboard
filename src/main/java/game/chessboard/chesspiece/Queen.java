@@ -24,43 +24,30 @@ public class Queen implements ChessPiece{
 	public List<String> move() {
 		List<String> dir = getDirection();
 		for (String s : dir) {
-			int x = 0, y = 0;
 			switch (s) {
 			case "UP":
-				y = y+1;
-				resolveMovement(x, y, startPosition);
+				resolveMovement(0, 1, startPosition);
 				continue;
 			case "DOWN":
-				y = y-1;
-				resolveMovement(x, y, startPosition);
+				resolveMovement(0, -1, startPosition);
 				continue;
 			case "LEFT":
-				x = x-1;
-				resolveMovement(x, y, startPosition);
+				resolveMovement(-1, 0, startPosition);
 				continue;
 			case "RIGHT":
-				x = x+1;
-				resolveMovement(x, y, startPosition);
+				resolveMovement(1, 0, startPosition);
 				continue;
 			case "DIAGONAL_UP_LEFT":
-				x = x-1;
-				y = y+1;
-				resolveMovement(x, y, startPosition);
+				resolveMovement(-1, 1, startPosition);
 				continue;
 			case "DIAGONAL_UP_RIGHT":
-				x = x+1;
-				y = y+1;
-				resolveMovement(x, y, startPosition);
+				resolveMovement(1, 1, startPosition);
 				continue;
 			case "DIAGONAL_DOWN_LEFT":
-				x = x-1;
-				y = y-1;
-				resolveMovement(x, y, startPosition);
+				resolveMovement(-1, -1, startPosition);
 				continue;
 			case "DIAGONAL_DOWN_RIGHT":
-				x = x+1;
-				y = y-1;
-				resolveMovement(x, y, startPosition);
+				resolveMovement(1, -1, startPosition);
 				continue;
 			default:
 				continue;

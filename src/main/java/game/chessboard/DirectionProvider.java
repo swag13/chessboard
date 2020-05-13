@@ -36,6 +36,13 @@ public class DirectionProvider {
 			dir.add(Direction.DIAGONAL_DOWN_LEFT.toString());
 			dir.add(Direction.DIAGONAL_DOWN_RIGHT.toString());
 			break;
+			
+		case ChessPieceFactory.HORSE:
+			dir.add(Direction.UP.toString());
+			dir.add(Direction.DOWN.toString());
+			dir.add(Direction.LEFT.toString());
+			dir.add(Direction.RIGHT.toString());
+			break;
 
 		default:
 			break;
