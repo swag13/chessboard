@@ -1,7 +1,7 @@
 # chessboard
 Chess Board Game
 
-#Chess pieces and their movements:
+# Chess pieces and their movements:
 The game of chess has 6 unique types of pieces, with their own unique types
 of movements. 
 
