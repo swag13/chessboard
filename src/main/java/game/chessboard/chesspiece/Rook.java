@@ -1,37 +1,58 @@
 package game.chessboard.chesspiece;
 
 import game.chessboard.ChessPiece;
+import game.chessboard.DirectionProvider;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Rook implements ChessPiece{
+public class Rook extends ChessPieceMovement implements ChessPiece{
 
-	String position;
-	
+	String startPosition ;
+	List<String> movement = new ArrayList<String>();
+
 	public Rook() {
-	
-	}
 
-	public Rook(String position) {
-		this.position = position;
 	}
+	public Rook(String startPosition) {
+		this.startPosition = startPosition; //D5
 
-	@Override
-	public String getType() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
 	public List<String> move() {
-		// TODO Auto-generated method stub
-		return null;
+		List<String> dir = getDirection();
+		for (String s : dir) {
+			switch (s) {
+			case "UP":
+				resolveAcrossMovement(0, 1, startPosition, this.movement);
+				continue;
+			case "DOWN":
+				resolveAcrossMovement(0, -1, startPosition, this.movement);
+				continue;
+			case "LEFT":
+				resolveAcrossMovement(-1, 0, startPosition, this.movement);
+				continue;
+			case "RIGHT":
+				resolveAcrossMovement(1, 0, startPosition, this.movement);
+				continue;
+			default:
+				continue;
+			}
+		}
+		return this.movement;
 	}
+
 
 	@Override
 	public List<String> getDirection() {
-		// TODO Auto-generated method stub
-		return null;
+		List<String> dir = new DirectionProvider().getDirection(this);
+		return dir;
+	}
+
+	@Override
+	public String getType() {
+		return "Rook";
 	}
 
 }

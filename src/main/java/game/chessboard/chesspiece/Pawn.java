@@ -1,37 +1,56 @@
 package game.chessboard.chesspiece;
 
 import game.chessboard.ChessPiece;
+import game.chessboard.DirectionProvider;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Pawn implements ChessPiece{
+public class Pawn extends ChessPieceMovement implements ChessPiece{
 
-	String position;
-	
+	String startPosition ;
 	public Pawn() {
-	
-	}
 
-	public Pawn(String position) {
-		this.position = position;
 	}
-
-	@Override
-	public String getType() {
-		// TODO Auto-generated method stub
-		return null;
+	public Pawn(String startPosition) {
+		this.startPosition = startPosition; //D5
 	}
 
 	@Override
 	public List<String> move() {
-		// TODO Auto-generated method stub
-		return null;
+		List<String> dir = getDirection();
+		List<String> movement = new ArrayList<String>();
+		for (String s : dir) {
+			switch (s) {
+			case "UP":
+				getPossibleMoves(movement, 0, 1);
+				continue;
+			default:
+				continue;
+			}
+		}
+		return movement;
 	}
+
+	private void getPossibleMoves(List<String> movement, int x, int y) {
+		String endPos = resolveStepMovement(x, y, startPosition);
+		if (!endPos.isEmpty()) {
+			movement.add(resolveStepMovement(x, y, startPosition));
+		}
+	}
+
+	
+
 
 	@Override
 	public List<String> getDirection() {
-		// TODO Auto-generated method stub
-		return null;
+		List<String> dir = new DirectionProvider().getDirection(this);
+		return dir;
+	}
+
+	@Override
+	public String getType() {
+		return "Pawn";
 	}
 
 }

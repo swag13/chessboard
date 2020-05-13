@@ -1,6 +1,6 @@
 package game.chessboard;
 
-import game.chessboard.chesspiece.King;
+import game.chessboard.chesspiece.Bishop;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,7 +10,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class KingTest {
+public class BishopTest {
 
 	@Before
 	public void initChessBoard() {
@@ -19,50 +19,50 @@ public class KingTest {
 	
 	@Test
 	public void testMoveBoundaryCond1() {
-		King king = new King("A8");
-		String[] expectedPos = {"A7", "B8", "B7"};
+		Bishop bishop = new Bishop("A8");
+		String[] expectedPos = {"B7", "C6", "D5", "E4", "F3", "G2", "H1" };
 		List<String> movements = new ArrayList<String>();
-		movements = king.move();
+		movements = bishop.move();
 		Assert.assertTrue(Arrays.asList(expectedPos).containsAll(movements));
 
 	}
 	
 	@Test
 	public void testMoveBoundaryCond2() {
-		King king = new King("H8");
-		String[] expectedPos = {"G7", "G8", "H7"};
+		Bishop bishop = new Bishop("H8");
+		String[] expectedPos = {"G7", "F6", "E5", "D4", "C3", "B2", "A1"};
 		List<String> movements = new ArrayList<String>();
-		movements = king.move();
+		movements = bishop.move();
 		Assert.assertTrue(Arrays.asList(expectedPos).containsAll(movements));
 
 	}
 	
 	@Test
 	public void testMoveBoundaryCond3() {
-		King king = new King("A1");
-		String[] expectedPos = {"A2", "B2", "B1"};
+		Bishop bishop = new Bishop("A1");
+		String[] expectedPos = {"B2", "C3", "D4","E5", "F6", "G7", "H8"};
 		List<String> movements = new ArrayList<String>();
-		movements = king.move();
+		movements = bishop.move();
 		Assert.assertTrue(Arrays.asList(expectedPos).containsAll(movements));
 
 	}
 	
 	@Test
 	public void testMoveBoundaryCond4() {
-		King king = new King("H1");
-		String[] expectedPos = {"H2", "G2", "G1"};
+		Bishop bishop = new Bishop("H1");
+		String[] expectedPos = {"G2", "F3", "E4", "D5", "C6", "B7", "A8"};
 		List<String> movements = new ArrayList<String>();
-		movements = king.move();
+		movements = bishop.move();
 		Assert.assertTrue(Arrays.asList(expectedPos).containsAll(movements));
 
 	}
 	
 	@Test
 	public void testMove() {
-		King king = new King("D5");
-		String[] expectedPos = {"D6", "E6", "E5", "E4", "D4", "C4", "C5", "C6"};
+		Bishop bishop = new Bishop("D5");
+		String[] expectedPos = {"E6", "F7", "G8", "C4", "B3", "A2", "E4", "F3", "G2", "H1", "C6", "B7", "A8"} ;
 		List<String> movements = new ArrayList<String>();
-		movements = king.move();
+		movements = bishop.move();
 		Assert.assertTrue(Arrays.asList(expectedPos).containsAll(movements));
 
 	}

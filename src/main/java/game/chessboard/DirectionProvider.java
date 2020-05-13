@@ -43,6 +43,13 @@ public class DirectionProvider {
 			dir.add(Direction.LEFT.toString());
 			dir.add(Direction.RIGHT.toString());
 			break;
+		
+		case ChessPieceFactory.ROOK:
+			dir.add(Direction.UP.toString());
+			dir.add(Direction.DOWN.toString());
+			dir.add(Direction.LEFT.toString());
+			dir.add(Direction.RIGHT.toString());
+			break;
 
 		default:
 			break;
