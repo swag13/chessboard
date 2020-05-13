@@ -1,6 +1,8 @@
 package game.chessboard.chesspiece;
 
 import game.chessboard.ChessPiece;
+import game.chessboard.ChessPieceType;
+import game.chessboard.Direction;
 import game.chessboard.DirectionProvider;
 
 import java.util.ArrayList;
@@ -21,19 +23,19 @@ public class Rook extends ChessPieceMovement implements ChessPiece{
 
 	@Override
 	public List<String> move() {
-		List<String> dir = getDirection();
-		for (String s : dir) {
-			switch (s) {
-			case "UP":
+		List<Direction> directions = new DirectionProvider().getDirection(this);
+		for (Direction direction : directions) {
+			switch (direction) {
+			case UP:
 				resolveAcrossMovement(0, 1, startPosition, this.movement);
 				continue;
-			case "DOWN":
+			case DOWN:
 				resolveAcrossMovement(0, -1, startPosition, this.movement);
 				continue;
-			case "LEFT":
+			case LEFT:
 				resolveAcrossMovement(-1, 0, startPosition, this.movement);
 				continue;
-			case "RIGHT":
+			case RIGHT:
 				resolveAcrossMovement(1, 0, startPosition, this.movement);
 				continue;
 			default:
@@ -43,16 +45,9 @@ public class Rook extends ChessPieceMovement implements ChessPiece{
 		return this.movement;
 	}
 
-
-	@Override
-	public List<String> getDirection() {
-		List<String> dir = new DirectionProvider().getDirection(this);
-		return dir;
-	}
-
 	@Override
 	public String getType() {
-		return "Rook";
+		return ChessPieceType.ROOK.getValue();
 	}
 
 }

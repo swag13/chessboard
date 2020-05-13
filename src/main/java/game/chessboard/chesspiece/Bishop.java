@@ -1,6 +1,7 @@
 package game.chessboard.chesspiece;
 
 import game.chessboard.ChessPiece;
+import game.chessboard.Direction;
 import game.chessboard.DirectionProvider;
 
 import java.util.ArrayList;
@@ -21,19 +22,19 @@ public class Bishop extends ChessPieceMovement implements ChessPiece{
 
 	@Override
 	public List<String> move() {
-		List<String> dir = getDirection();
-		for (String s : dir) {
-			switch (s) {
-			case "DIAGONAL_UP_LEFT":
+		List<Direction> directions = new DirectionProvider().getDirection(this);
+		for (Direction direction : directions) {
+			switch (direction) {
+			case DIAGONAL_UP_LEFT:
 				resolveAcrossMovement(-1, 1, startPosition, this.movement);
 				continue;
-			case "DIAGONAL_UP_RIGHT":
+			case DIAGONAL_UP_RIGHT:
 				resolveAcrossMovement(1, 1, startPosition, this.movement);
 				continue;
-			case "DIAGONAL_DOWN_LEFT":
+			case DIAGONAL_DOWN_LEFT:
 				resolveAcrossMovement(-1, -1, startPosition, this.movement);
 				continue;
-			case "DIAGONAL_DOWN_RIGHT":
+			case DIAGONAL_DOWN_RIGHT:
 				resolveAcrossMovement(1, -1, startPosition, this.movement);
 				continue;
 			default:
@@ -41,12 +42,6 @@ public class Bishop extends ChessPieceMovement implements ChessPiece{
 			}
 		}
 		return this.movement;
-	}
-
-	@Override
-	public List<String> getDirection() {
-		List<String> dir = new DirectionProvider().getDirection(this);
-		return dir;
 	}
 
 	@Override

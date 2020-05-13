@@ -1,6 +1,8 @@
 package game.chessboard.chesspiece;
 
 import game.chessboard.ChessPiece;
+import game.chessboard.ChessPieceType;
+import game.chessboard.Direction;
 import game.chessboard.DirectionProvider;
 
 import java.util.ArrayList;
@@ -18,11 +20,11 @@ public class Pawn extends ChessPieceMovement implements ChessPiece{
 
 	@Override
 	public List<String> move() {
-		List<String> dir = getDirection();
+		List<Direction> directions = new DirectionProvider().getDirection(this);
 		List<String> movement = new ArrayList<String>();
-		for (String s : dir) {
-			switch (s) {
-			case "UP":
+		for (Direction direction : directions) {
+			switch (direction) {
+			case UP:
 				getPossibleMoves(movement, 0, 1);
 				continue;
 			default:
@@ -39,18 +41,9 @@ public class Pawn extends ChessPieceMovement implements ChessPiece{
 		}
 	}
 
-	
-
-
-	@Override
-	public List<String> getDirection() {
-		List<String> dir = new DirectionProvider().getDirection(this);
-		return dir;
-	}
-
 	@Override
 	public String getType() {
-		return "Pawn";
+		return ChessPieceType.PAWN.getValue();
 	}
 
 }

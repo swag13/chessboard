@@ -2,6 +2,8 @@ package game.chessboard.chesspiece;
 
 import game.chessboard.ChessBoard;
 import game.chessboard.ChessPiece;
+import game.chessboard.ChessPieceType;
+import game.chessboard.Direction;
 import game.chessboard.DirectionProvider;
 
 import java.util.ArrayList;
@@ -16,18 +18,16 @@ public class Horse implements ChessPiece{
 
 	}
 	public Horse(String startPosition) {
-		this.startPosition = startPosition; //D5
-
+		this.startPosition = startPosition;
 	}
 
 	@Override
 	public List<String> move() {
-		List<String> dir = getDirection();
+		List<Direction> directions = new DirectionProvider().getDirection(this);
 		int x = 0, y = 0;
-		for (String s : dir) {
-			
-			switch (s) {
-			case "UP":
+		for (Direction direction : directions) {
+			switch (direction) {
+			case UP:
 				y = 2;
 				x = 1;
 				resolveMovement(x, y, startPosition);
@@ -35,7 +35,7 @@ public class Horse implements ChessPiece{
 				x = -1;
 				resolveMovement(x, y, startPosition);
 				continue;
-			case "DOWN":
+			case DOWN:
 				y = -2;
 				x = -1;
 				resolveMovement(x, y, startPosition);
@@ -43,7 +43,7 @@ public class Horse implements ChessPiece{
 				x = 1;
 				resolveMovement(x, y, startPosition);
 				continue;
-			case "LEFT":
+			case LEFT:
 				x = -2;
 				y = -1;				
 				resolveMovement(x, y, startPosition);
@@ -51,7 +51,7 @@ public class Horse implements ChessPiece{
 				y = 1;				
 				resolveMovement(x, y, startPosition);
 				continue;
-			case "RIGHT":
+			case RIGHT:
 				x = 2;
 				y = 1;
 				resolveMovement(x, y, startPosition);
@@ -84,16 +84,9 @@ public class Horse implements ChessPiece{
 		}
 	}
 
-
-	@Override
-	public List<String> getDirection() {
-		List<String> dir = new DirectionProvider().getDirection(this);
-		return dir;
-	}
-
 	@Override
 	public String getType() {
-		return "Horse";
+		return ChessPieceType.HORSE.getValue();
 	}
 
 }

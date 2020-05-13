@@ -1,6 +1,8 @@
 package game.chessboard.chesspiece;
 
 import game.chessboard.ChessPiece;
+import game.chessboard.ChessPieceType;
+import game.chessboard.Direction;
 import game.chessboard.DirectionProvider;
 
 import java.util.ArrayList;
@@ -20,31 +22,32 @@ public class King extends ChessPieceMovement implements ChessPiece{
 
 	@Override
 	public List<String> move() {
-		List<String> dir = getDirection();
-		for (String s : dir) {
-			switch (s) {
-			case "UP":
+		List<Direction> directions = new DirectionProvider().getDirection(this);
+		
+		for (Direction direction : directions) {
+			switch (direction) {
+			case UP:
 				getPossibleMoves(movement, 0, 1);
 				continue;
-			case "DOWN":
+			case DOWN:
 				getPossibleMoves(movement, 0, -1);
 				continue;
-			case "LEFT":
+			case LEFT:
 				getPossibleMoves(movement, -1, 0);
 				continue;
-			case "RIGHT":
+			case RIGHT:
 				getPossibleMoves(movement, 1, 0);
 				continue;
-			case "DIAGONAL_UP_LEFT":
+			case DIAGONAL_UP_LEFT:
 				getPossibleMoves(movement, -1, 1);
 				continue;
-			case "DIAGONAL_UP_RIGHT":
+			case DIAGONAL_UP_RIGHT:
 				getPossibleMoves(movement, 1, 1);
 				continue;
-			case "DIAGONAL_DOWN_LEFT":
+			case DIAGONAL_DOWN_LEFT:
 				getPossibleMoves(movement, -1, -1);
 				continue;
-			case "DIAGONAL_DOWN_RIGHT":
+			case DIAGONAL_DOWN_RIGHT:
 				getPossibleMoves(movement, 1, -1);
 				continue;
 			default:
@@ -62,14 +65,8 @@ public class King extends ChessPieceMovement implements ChessPiece{
 	}
 
 	@Override
-	public List<String> getDirection() {
-		List<String> dir = new DirectionProvider().getDirection(this);
-		return dir;
-	}
-
-	@Override
 	public String getType() {
-		return "King";
+		return ChessPieceType.KING.getValue();
 	}
 
 }

@@ -1,6 +1,8 @@
 package game.chessboard.chesspiece;
 
 import game.chessboard.ChessPiece;
+import game.chessboard.ChessPieceType;
+import game.chessboard.Direction;
 import game.chessboard.DirectionProvider;
 
 import java.util.ArrayList;
@@ -15,37 +17,37 @@ public class Queen extends ChessPieceMovement implements ChessPiece{
 
 	}
 	public Queen(String startPosition) {
-		this.startPosition = startPosition; //D5
+		this.startPosition = startPosition; 
 
 	}
 
 	@Override
 	public List<String> move() {
-		List<String> dir = getDirection();
-		for (String s : dir) {
-			switch (s) {
-			case "UP":
+		List<Direction> directions = new DirectionProvider().getDirection(this);
+		for (Direction direction : directions) {
+			switch (direction) {
+			case UP:
 				resolveAcrossMovement(0, 1, startPosition, this.movement);
 				continue;
-			case "DOWN":
+			case DOWN:
 				resolveAcrossMovement(0, -1, startPosition, this.movement);
 				continue;
-			case "LEFT":
+			case LEFT:
 				resolveAcrossMovement(-1, 0, startPosition, this.movement);
 				continue;
-			case "RIGHT":
+			case RIGHT:
 				resolveAcrossMovement(1, 0, startPosition, this.movement);
 				continue;
-			case "DIAGONAL_UP_LEFT":
+			case DIAGONAL_UP_LEFT:
 				resolveAcrossMovement(-1, 1, startPosition, this.movement);
 				continue;
-			case "DIAGONAL_UP_RIGHT":
+			case DIAGONAL_UP_RIGHT:
 				resolveAcrossMovement(1, 1, startPosition, this.movement);
 				continue;
-			case "DIAGONAL_DOWN_LEFT":
+			case DIAGONAL_DOWN_LEFT:
 				resolveAcrossMovement(-1, -1, startPosition, this.movement);
 				continue;
-			case "DIAGONAL_DOWN_RIGHT":
+			case DIAGONAL_DOWN_RIGHT:
 				resolveAcrossMovement(1, -1, startPosition, this.movement);
 				continue;
 			default:
@@ -55,16 +57,9 @@ public class Queen extends ChessPieceMovement implements ChessPiece{
 		return this.movement;
 	}
 
-
-	@Override
-	public List<String> getDirection() {
-		List<String> dir = new DirectionProvider().getDirection(this);
-		return dir;
-	}
-
 	@Override
 	public String getType() {
-		return "Queen";
+		return ChessPieceType.QUEEN.getValue();
 	}
 
 }

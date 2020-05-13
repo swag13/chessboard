@@ -7,6 +7,9 @@ import game.chessboard.chesspiece.Pawn;
 import game.chessboard.chesspiece.Queen;
 import game.chessboard.chesspiece.Rook;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ChessPieceFactory {
 	public static final String KING = "King";
 	public static final String QUEEN = "Queen";
@@ -14,6 +17,7 @@ public class ChessPieceFactory {
 	public static final String HORSE = "Horse";
 	public static final String ROOK = "Rook";
 	public static final String PAWN = "Pawn";
+	
 	
 	public static ChessPiece create(String type, String position) {
 		switch(type) {
