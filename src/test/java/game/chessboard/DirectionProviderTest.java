@@ -1,5 +1,7 @@
 package game.chessboard;
 
+import game.chessboard.chesspiece.King;
+
 import java.util.Arrays;
 
 import org.junit.Assert;

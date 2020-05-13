@@ -1,7 +1,7 @@
 package game.chessboard;
 
 public class ChessBoard {
-	static String[][] chessBoard;
+	public static String[][] chessBoard;
 
 
 	public static void init() {

@@ -1,4 +1,8 @@
-package game.chessboard;
+package game.chessboard.chesspiece;
+
+import game.chessboard.ChessBoard;
+import game.chessboard.ChessPiece;
+import game.chessboard.DirectionProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,18 +10,12 @@ import java.util.List;
 public class King implements ChessPiece{
 
 	String startPosition ;
-	String endPosition;
-
-
 	public King() {
 
 	}
-
 	public King(String startPosition) {
 		this.startPosition = startPosition; //D5
 	}
-
-
 
 	@Override
 	public List<String> move() {
@@ -77,7 +75,6 @@ public class King implements ChessPiece{
 	}
 
 	public String resolveMovement(int i, int j, String startPosition) {
-		ChessBoard.init();
 		String endPos = "";
 		String[][] board = ChessBoard.chessBoard;
 		for (int y=7; y>=0;y--) {
