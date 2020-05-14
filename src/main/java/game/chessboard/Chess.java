@@ -33,7 +33,7 @@ public class Chess {
 	public static boolean isValidInput(String input) {
 		boolean isValid = false;
 		if (input.indexOf(ChessConstant.SPACE) > 0) {
-			String[] inputs = input.split(" ");
+			String[] inputs = input.split(ChessConstant.SPACE);
 			String type = ChessUtil.convertToProperCase(inputs[0]);
 			String position = ChessUtil.convertToProperCase(inputs[1]);
 			if (ChessPieceType.getStringValues().contains(type) && Arrays.asList(ChessBoard.positions).contains(position))
@@ -48,7 +48,7 @@ public class Chess {
 	 */
 	private static void play(String input) {
 		int counter = 0;
-		String[] inputs = input.split(" ");
+		String[] inputs = input.split(ChessConstant.SPACE);
 		String type = ChessUtil.convertToProperCase(inputs[0]);
 		String position = ChessUtil.convertToProperCase(inputs[1]);
 		ChessPiece chessPiece = ChessPieceFactory.create(type, position);
@@ -57,7 +57,7 @@ public class Chess {
 			if (counter == 0) {
 				System.out.print(movement);
 			} else {
-				System.out.print(", "+movement);
+				System.out.print(ChessConstant.COMMA + movement);
 			}
 			counter++;
 		}
