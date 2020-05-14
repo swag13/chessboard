@@ -7,9 +7,18 @@ This console game application simulates a chessboard and the movements of variou
 The chessboard is an 8 x 8 grid with 64 cells in it.
 With 8 rows (A, B, C.... H) and 8 columns (1, 2, 3.... 8), each cell can be uniquely identified with its cell number.
 
+### Chesspiece
+
+King
+Queen
+Bishop
+Horse
+Rook
+Pawn
+
 ## Getting Started
 
-The game of chess has 6 unique types of pieces, with their own unique types of movements. 
+The game of chess has 6 unique types of chess pieces, with their own unique types of movements. 
 
 1. King -> Can move only 1 step at a time in all 8 directions (horizontal, vertical and diagonal)
 
@@ -40,5 +49,10 @@ The board is empty. This means that the pawn cannot move diagonally.
 
 Doing a maven install runs all the test cases and builds the project.
 The entry point is Chess.java
+
+### Format of input
+
+<ChessPiece><space><Position> e.g. King D5
+
  
 
