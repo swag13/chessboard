@@ -33,7 +33,7 @@ The board is empty. This means that the pawn cannot move diagonally.
 
 ### Libraries
 
-* [jUnit] (https://junit.org/junit4/dependency-info.html) - Testing Framework 
+* [jUnit](https://junit.org/junit4/dependency-info.html) - Testing Framework 
 
 
 ## Run
