@@ -52,7 +52,7 @@ The entry point is Chess.java
 
 ### Format of input
 
-<ChessPiece><space><Position> e.g. King D5
+ChessPiece space Position e.g. King D5
 
  
 
