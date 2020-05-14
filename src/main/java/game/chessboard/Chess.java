@@ -1,5 +1,6 @@
 package game.chessboard;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,12 +9,15 @@ public class Chess {
 		String input = "";
 		System.out.println("------- Chess Board Game -------"
 				+ "\nPlease enter chess piece type and starting position to find out possible moves\n");
+		ChessBoard.init();
 		Scanner sc = new Scanner(System.in);
 		while (sc.hasNext()) {
 			input = sc.nextLine();
 			if (isValidInput(input)) {
 				play(input);
 				System.out.println();
+			} else {
+				System.out.println("Please enter valid input to play...");
 			}
 		}
 		sc.close();
@@ -23,15 +27,13 @@ public class Chess {
 	 * @param input
 	 * @return boolean
 	 */
-	private static boolean isValidInput(String input) {
+	public static boolean isValidInput(String input) {
 		boolean isValid = false;
 		String[] inputs = input.split(" ");
 		String type = inputs[0];
-		Integer position = Integer.parseInt(inputs[1]);
-		if (ChessPieceType.getStringValues().contains(type) && position >= 1 && position <= 8){
+		String position = inputs[1];
+		if (ChessPieceType.getStringValues().contains(type) && Arrays.asList(ChessBoard.positions).contains(position))
 			isValid = true;
-		} else
-			System.out.println("Please enter valid inputs.");
 		return isValid;
 	}
 
@@ -43,7 +45,6 @@ public class Chess {
 		String[] inputs = input.split(" ");
 		String type = inputs[0];
 		String position = inputs[1];
-		ChessBoard.init();
 		ChessPiece chessPiece = ChessPieceFactory.create(type, position);
 		List<String> movements = chessPiece.move();
 		for (String movement : movements) {
